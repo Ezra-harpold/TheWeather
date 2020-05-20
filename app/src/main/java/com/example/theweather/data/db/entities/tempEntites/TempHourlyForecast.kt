@@ -10,6 +10,7 @@ package com.example.theweather.data.db.entities.tempEntites
 class TempHourlyForecast (
     var main: main? = null,
     var weather: weather? = null,
-    var wind: wind? = null,
+    var wind: List<wind>? = null,
+    var rain: rain? = null,
     var dt_txt: String? = null
 )
