@@ -1,6 +1,7 @@
 package com.example.theweather.data.db.entities
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.example.theweather.data.db.entities.tempEntites.TempHourlyForecast
 
 
@@ -18,6 +19,7 @@ import com.example.theweather.data.db.entities.tempEntites.TempHourlyForecast
  */
 @Entity
 data class HourlyForecast (
+    @PrimaryKey(autoGenerate = false)
     var id: String? = null,
     var hour: Int? = null,
     var date: Int? = null,
