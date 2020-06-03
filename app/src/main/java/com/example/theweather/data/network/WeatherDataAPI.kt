@@ -5,17 +5,23 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface WeatherDataAPI {
 
-    @GET("list")
-    suspend fun getHourlyForecast() : Response<TempHourlyForecastResponse>
+    @GET("forecast?")
+    suspend fun getHourlyForecast(
+        @Query("q") cityName : String,
+        @Query("units") unit : String,
+        @Query("appid") appId : String
+
+    ) : Response<TempHourlyForecastResponse>
 
 
     companion object{
         operator fun invoke() : WeatherDataAPI{
             return Retrofit.Builder()
-                .baseUrl("http://api.openweathermap.org/data/2.5/forecast?q=Baraboo&appid=221e684022fb29ca1d952493baeba98f")
+                .baseUrl("http://api.openweathermap.org/data/2.5/forecast?")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(WeatherDataAPI::class.java)
