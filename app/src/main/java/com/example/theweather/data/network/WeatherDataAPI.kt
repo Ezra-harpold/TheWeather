@@ -13,7 +13,7 @@ interface WeatherDataAPI {
     suspend fun getHourlyForecast(
         @Query("q") cityName : String,
         @Query("units") unit : String,
-        @Query("appid") appId : String
+        @Query("appid") apiKey : String
 
     ) : Response<TempHourlyForecastResponse>
 
@@ -21,7 +21,7 @@ interface WeatherDataAPI {
     companion object{
         operator fun invoke() : WeatherDataAPI{
             return Retrofit.Builder()
-                .baseUrl("http://api.openweathermap.org/data/2.5/forecast?")
+                .baseUrl("http://api.openweathermap.org/data/2.5/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(WeatherDataAPI::class.java)
