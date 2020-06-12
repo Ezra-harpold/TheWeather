@@ -1,19 +1,15 @@
-package com.example.theweather.data.network.Responses
+package com.example.theweather.data.network
 
 import android.content.Context
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class NetworkConnectionInterceptor(context: Context) : Interceptor  {
-
-    private val appContext = context.applicationContext
-
-
+class NetworkConnectionTest (context: Context) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         TODO("Not yet implemented")
     }
 
-    private fun checkConnection() : Boolean{
+    private fun checkConnection() :{
         TODO("Not yet implemented")
     }
 }
