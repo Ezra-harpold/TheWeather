@@ -1,4 +1,4 @@
-package com.example.theweather.util
+package com.example.theweather.util.Coroutines
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
