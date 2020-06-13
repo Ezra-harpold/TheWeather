@@ -5,14 +5,23 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import okhttp3.Interceptor
 import okhttp3.Response
+import java.io.IOException
 
 class NetworkConnectionTest (context: Context) : Interceptor {
 
     private val appContext = context.applicationContext
 
+
     override fun intercept(chain: Interceptor.Chain): Response {
-        TODO("Not yet implemented")
+        // check if the device is connected to the internet
+        if (!checkConnection())
+            // If the device is not connected to a network throw an exception
+            throw IOException("Please make sure your device is connected to an active network")
+        // If the device is connected continue with whatever we are trying to do with the internet
+        return chain.proceed(chain.request())
     }
+
+
 
     /**
      * We use this function to check if the device is connected to the internet
