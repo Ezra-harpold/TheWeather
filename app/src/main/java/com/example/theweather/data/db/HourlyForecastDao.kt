@@ -13,11 +13,14 @@ interface HourlyForecastDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveAllHourlyForecasts (hourlyForecast: List<HourlyForecast>)
 
+    @Query("SELECT * FROM HourlyForecast")
+    fun getAll() :LiveData<List<HourlyForecast>>
+
     @Query("SELECT * FROM HourlyForecast WHERE date LIKE :Date")
     fun getHourlyForecastByDate(Date: Int) : LiveData<List<HourlyForecast>>
 
-    @Query("SELECT * FROM HourlyForecast WHERE date LIKE :Date AND hour LIKE :Hour")
-    fun getHourlyForecastByDateAndHour(Hour: Int, Date: Int) : LiveData<HourlyForecast>
+    //@Query("SELECT * FROM HourlyForecast WHERE date LIKE :Date AND hour LIKE :Hour")
+    //fun getHourlyForecastByDateAndHour(Hour: Int, Date: Int) : LiveData<HourlyForecast>
 
 
 }

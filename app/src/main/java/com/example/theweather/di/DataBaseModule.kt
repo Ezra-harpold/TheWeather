@@ -22,6 +22,7 @@ class DataBaseModule {
             application,
             WeatherForecastDatabase::class.java,
             "WeatherForecastDatabase.db")
+            .fallbackToDestructiveMigration()
             .build()
     }
 
