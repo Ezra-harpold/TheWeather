@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">The Weather</string>
+    <string name="search_title"> Search the name of a location that you want to see the forecast of</string>
+    <string name="search_hint">Enter the name of a location that you want to see the forecast of</string>
 </resources>
