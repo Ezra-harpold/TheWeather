@@ -18,7 +18,7 @@ data class HourlyForecast (
     @PrimaryKey
     var dt_txt: String,
 
-    var date: Int? = null,
+    var date: Int ,
 
     @Embedded
     var main: main? = null,

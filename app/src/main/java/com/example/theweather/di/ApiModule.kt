@@ -1,5 +1,6 @@
 package com.example.theweather.di
 
+import android.app.Application
 import android.content.Context
 import com.example.theweather.data.network.NetworkConnectionTest
 import com.example.theweather.data.network.WeatherDataAPI
@@ -19,16 +20,19 @@ class ApiModule {
 
 
 
-   // @Provides
-    //fun provideNetworkConnectionTest(context: Context) : NetworkConnectionTest{
-    //    return NetworkConnectionTest(context)
-   // }
+
+
+
+   @Provides
+    fun provideNetworkConnectionTest(application: Application) : NetworkConnectionTest{
+     return NetworkConnectionTest(application)
+    }
 
     @Provides
     @Singleton
-    fun provideOkHttpClient() : OkHttpClient{
+    fun provideOkHttpClient(application: Application) : OkHttpClient{
         return OkHttpClient.Builder()
-            //.addInterceptor(NetworkConnectionTest())
+            .addInterceptor(provideNetworkConnectionTest(application))
             .build()
     }
 

@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
        Coroutines.main {
           val forecast = mainViewModle.forecast.await()
           forecast.observe(this, Observer {
-          Toast.makeText(this,it.size.toString(),Toast.LENGTH_LONG).show()
+          Toast.makeText(this,it[0].date.toString(),Toast.LENGTH_LONG).show()
             })
         }
     }

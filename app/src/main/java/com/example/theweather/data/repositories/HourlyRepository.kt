@@ -7,6 +7,7 @@ import com.example.theweather.data.db.entities.HourlyForecast
 import com.example.theweather.data.network.SafeApiCall
 import com.example.theweather.data.network.WeatherDataAPI
 import com.example.theweather.util.Coroutines.Coroutines
+import com.example.theweather.util.formatDateTime
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -48,6 +49,12 @@ class HourlyRepository @Inject constructor(
                         apiKey)}
                 val Result = queryResponse.list
                 println(Result.size)
+
+                for (item in Result){
+                   val dateTime = formatDateTime(item.dt_txt)
+                  item.date = dateTime.dayOfMonth
+                    println(item.date)
+                }
 
                 hourlyForecastList.postValue(Result)
             }catch (e: Exception) {

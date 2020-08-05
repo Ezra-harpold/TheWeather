@@ -1,5 +1,6 @@
 package com.example.theweather.data.network
 
+import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
@@ -7,9 +8,9 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
 
-class NetworkConnectionTest (context: Context) : Interceptor {
+class NetworkConnectionTest (app: Application) : Interceptor {
 
-    private val appContext = context.applicationContext
+    private val appContext = app.applicationContext
 
 
     override fun intercept(chain: Interceptor.Chain): Response {

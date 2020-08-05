@@ -8,7 +8,7 @@ import com.example.theweather.data.db.entities.HourlyForecast
 
 @Database(
     entities = [HourlyForecast::class, DailyForecast::class],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 @TypeConverters(WeatherTypeConverter::class)
