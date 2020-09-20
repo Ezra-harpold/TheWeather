@@ -10,10 +10,12 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.theweather.R
 import com.example.theweather.util.Coroutines.Coroutines
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private val numberOfFragments = 3
 
     private val mainViewModle: MainActivityViewModel by viewModels()
 
@@ -22,13 +24,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setSupportActionBar(findViewById(R.id.main_activity_tool_bar))
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
-       Coroutines.main {
-          val forecast = mainViewModle.forecast.await()
-          forecast.observe(this, Observer {
-          Toast.makeText(this,it[0].date.toString(),Toast.LENGTH_LONG).show()
-            })
-        }
+
+        val fragmentForecastAdapter = FragmentForecastAdapter(this,
+            numberOfFragments)
+        fragmentForecastViewpager2.adapter = fragmentForecastAdapter
+
+      // Coroutines.main {
+        //  val forecast = mainViewModle.forecast.await()
+          //forecast.observe(this, Observer {
+          //Toast.makeText(this,it[0].date.toString(),Toast.LENGTH_LONG).show()
+           // })
+        //}
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
