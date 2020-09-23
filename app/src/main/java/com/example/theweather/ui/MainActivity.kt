@@ -9,8 +9,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.theweather.R
 import com.example.theweather.util.Coroutines.Coroutines
+import com.google.android.material.tabs.TabLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import com.google.android.material.tabs.TabLayoutMediator
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -31,6 +34,18 @@ class MainActivity : AppCompatActivity() {
         val fragmentForecastAdapter = FragmentForecastAdapter(this,
             numberOfFragments)
         fragmentForecastViewpager2.adapter = fragmentForecastAdapter
+
+        val tabLayout:TabLayout = findViewById(R.id.main_activity_tab_layout)
+
+        TabLayoutMediator(tabLayout, fragmentForecastViewpager2){tab, position ->
+            when(position){
+                0 -> tab.text = "Today"
+                1 -> tab.text ="Tomorrow"
+                2 -> tab.text = "Five Day"
+            }
+        }
+            .attach()
+
 
       // Coroutines.main {
         //  val forecast = mainViewModle.forecast.await()
