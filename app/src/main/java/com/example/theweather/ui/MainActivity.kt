@@ -47,12 +47,13 @@ class MainActivity : AppCompatActivity() {
             .attach()
 
 
-      // Coroutines.main {
-        //  val forecast = mainViewModle.forecast.await()
-          //forecast.observe(this, Observer {
-          //Toast.makeText(this,it[0].date.toString(),Toast.LENGTH_LONG).show()
+       //Coroutines.main {
+        // val forecast = mainViewModle.forecast.await()
+         // forecast.observe(this, Observer {
+         // Toast.makeText(this,it[0].weather[0].main
+          //    .toString(),Toast.LENGTH_LONG).show()
            // })
-        //}
+       // }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

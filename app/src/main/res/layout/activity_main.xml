@@ -4,59 +4,62 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    
 
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.MainActivity">
-
-  <include
-    layout="@layout/my_tool_bar"
-    android:id="@+id/main_activity_tool_bar">
-
-  </include>
-
-  <com.google.android.material.tabs.TabLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:id="@+id/main_activity_tab_layout"
-      android:layout_marginStart="1dp"
-      android:layout_marginEnd="1dp"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/main_activity_tool_bar">
-
-    <com.google.android.material.tabs.TabItem
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/todays_forecast_tab"
-        android:text="@string/todays_forecast_tab_title" />
-
-    <com.google.android.material.tabs.TabItem
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tomorrows_forecast_tab"
-        android:text="@string/tomorrows_forecast_tab_title" />
-
-    <com.google.android.material.tabs.TabItem
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/five_day_forecast_tab"
-        android:text="@string/five_day_forecast_tab_title" />
-  </com.google.android.material.tabs.TabLayout>
-
-  <androidx.viewpager2.widget.ViewPager2
-      android:id="@+id/fragmentForecastViewpager2"
+  <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      tools:layout_editor_absoluteX="50dp"
-      tools:layout_editor_absoluteY="0dp">
+      tools:context=".ui.MainActivity">
+
+    <include
+        android:id="@+id/main_activity_tool_bar"
+        layout="@layout/my_tool_bar">
+
+    </include>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/main_activity_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_tool_bar">
+
+      <com.google.android.material.tabs.TabItem
+          android:id="@+id/todays_forecast_tab"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/todays_forecast_tab_title" />
+
+      <com.google.android.material.tabs.TabItem
+          android:id="@+id/tomorrows_forecast_tab"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/tomorrows_forecast_tab_title" />
+
+      <com.google.android.material.tabs.TabItem
+          android:id="@+id/five_day_forecast_tab"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/five_day_forecast_tab_title" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/fragmentForecastViewpager2"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_activity_tab_layout"
+        app:layout_constraintVertical_bias="0.0">
 
 
-  </androidx.viewpager2.widget.ViewPager2>
+    </androidx.viewpager2.widget.ViewPager2>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+  </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
