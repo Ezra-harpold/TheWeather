@@ -11,8 +11,10 @@ class MainActivityViewModel @ViewModelInject constructor (
 ): ViewModel(){
 
 
+        val forecast by lazyDeferred {
+            hourlyRepository.getHourlyForecast(15)
+        }
 
-   val forecast by lazyDeferred {
-        hourlyRepository.getHourlyForecast(24)
-    }
+
+
 }

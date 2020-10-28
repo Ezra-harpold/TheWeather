@@ -3,7 +3,7 @@ package com.example.theweather.data.repositories
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.theweather.data.db.HourlyForecastDao
-import com.example.theweather.data.db.entities.HourlyForecast
+import com.example.theweather.data.entities.HourlyForecast
 import com.example.theweather.data.network.SafeApiCall
 import com.example.theweather.data.network.WeatherDataAPI
 import com.example.theweather.util.Coroutines.Coroutines
@@ -24,19 +24,14 @@ class HourlyRepository @Inject constructor(
     //private val unit: String = "imperial"
     private val apiKey: String = "221e684022fb29ca1d952493baeba98f"
 
-            init{
-                hourlyForecastList.observeForever{
-                    saveForecast(it)
 
-                }
-            }
 
     suspend fun getHourlyForecast(date: Int) : LiveData<List<HourlyForecast>>{
 
         return withContext(Dispatchers.IO){
             queryHourlyForecast()
 
-            dao.getAll()
+            dao.getHourlyForecastByDate(date)
         }
     }
 
@@ -56,7 +51,7 @@ class HourlyRepository @Inject constructor(
                     println(item.date)
                 }
 
-                hourlyForecastList.postValue(Result)
+                saveForecast(Result)
             }catch (e: Exception) {
                 e.printStackTrace()
             }

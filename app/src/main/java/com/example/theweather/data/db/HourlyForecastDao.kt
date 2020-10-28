@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.theweather.data.db.entities.HourlyForecast
+import com.example.theweather.data.entities.HourlyForecast
 
 @Dao
 interface HourlyForecastDao {

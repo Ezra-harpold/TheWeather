@@ -8,6 +8,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,15 +25,15 @@ class ApiModule {
 
 
    @Provides
-    fun provideNetworkConnectionTest(application: Application) : NetworkConnectionTest{
-     return NetworkConnectionTest(application)
+    fun provideNetworkConnectionTest(@ApplicationContext appContext: Context) : NetworkConnectionTest{
+     return NetworkConnectionTest(appContext)
     }
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(application: Application) : OkHttpClient{
+    fun provideOkHttpClient(@ApplicationContext appContext: Context) : OkHttpClient{
         return OkHttpClient.Builder()
-            .addInterceptor(provideNetworkConnectionTest(application))
+            .addInterceptor(provideNetworkConnectionTest(appContext))
             .build()
     }
 

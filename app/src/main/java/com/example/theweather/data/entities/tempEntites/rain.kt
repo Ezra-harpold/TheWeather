@@ -1,4 +1,4 @@
-package com.example.theweather.data.db.entities.tempEntites
+package com.example.theweather.data.entities.tempEntites
 
 import com.google.gson.annotations.SerializedName
 

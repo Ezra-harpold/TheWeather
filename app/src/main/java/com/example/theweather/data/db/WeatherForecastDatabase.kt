@@ -1,10 +1,9 @@
 package com.example.theweather.data.db
 
-import android.content.Context
 import androidx.room.*
 import com.example.theweather.data.db.TypeConverters.WeatherTypeConverter
-import com.example.theweather.data.db.entities.DailyForecast
-import com.example.theweather.data.db.entities.HourlyForecast
+import com.example.theweather.data.entities.DailyForecast
+import com.example.theweather.data.entities.HourlyForecast
 
 @Database(
     entities = [HourlyForecast::class, DailyForecast::class],

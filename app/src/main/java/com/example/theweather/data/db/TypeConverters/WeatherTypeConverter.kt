@@ -1,10 +1,9 @@
 package com.example.theweather.data.db.TypeConverters
 
 import androidx.room.TypeConverter
-import com.example.theweather.data.db.entities.tempEntites.weather
+import com.example.theweather.data.entities.tempEntites.weather
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Type
 
 class WeatherTypeConverter {
 

@@ -1,14 +1,14 @@
-package com.example.theweather.data.db.entities
+package com.example.theweather.data.entities
 
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.example.theweather.data.db.TypeConverters.WeatherTypeConverter
-import com.example.theweather.data.db.entities.tempEntites.main
-import com.example.theweather.data.db.entities.tempEntites.rain
-import com.example.theweather.data.db.entities.tempEntites.weather
-import com.example.theweather.data.db.entities.tempEntites.wind
+import com.example.theweather.data.entities.tempEntites.main
+import com.example.theweather.data.entities.tempEntites.rain
+import com.example.theweather.data.entities.tempEntites.weather
+import com.example.theweather.data.entities.tempEntites.wind
 
 /**
  *

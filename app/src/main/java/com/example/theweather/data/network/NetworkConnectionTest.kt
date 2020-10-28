@@ -8,9 +8,9 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
 
-class NetworkConnectionTest (app: Application) : Interceptor {
+class NetworkConnectionTest (context: Context) : Interceptor {
 
-    private val appContext = app.applicationContext
+    private val appContext = context
 
 
     override fun intercept(chain: Interceptor.Chain): Response {
