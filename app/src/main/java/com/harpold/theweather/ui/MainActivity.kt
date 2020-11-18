@@ -15,6 +15,7 @@ import androidx.lifecycle.Observer
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.harpold.theweather.R
+import com.harpold.theweather.util.Coroutines.Coroutines
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
     private val LONG_KEY = "long key"
 
-    //private val mainViewModel: MainActivityViewModel by viewModels()
+    private val mainViewModel: MainActivityViewModel by viewModels()
 
     private val appViewModel: ApplicationViewModel by viewModels()
 
@@ -65,14 +66,16 @@ class MainActivity : AppCompatActivity() {
 
         requestLocationUpdatesPermission()
 
+
+
         
-      // Coroutines.main {
-       //  val forecast = mainViewModel.forecast.await()
-        //  forecast.observe(this, Observer {
-         // Toast.makeText(this,it.size
-          //    .toString(), Toast.LENGTH_LONG).show()
-           // })
-       // }
+     // Coroutines.main {
+      //  val forecast = mainViewModel.forecast.await()
+       // forecast.observe(this, Observer {
+        //  Toast.makeText(this,it.size
+         //     .toString(), Toast.LENGTH_LONG).show()
+          //  })
+        //}
 
 
     }
@@ -97,29 +100,38 @@ class MainActivity : AppCompatActivity() {
 
     private fun requestLocationUpdates(){
         appViewModel.getLocation().observe(this, Observer {
-
+            println(it.lat)
+            println(it.long)
             if (mPreferences.contains(LAT_KEY)&& mPreferences.contains(LONG_KEY)){
 
                 val savedLat = mPreferences.getString(LAT_KEY, null)
                 val savedLong = mPreferences.getString(LONG_KEY, null)
                 if (needToUpDateLocation(it.lat,it.long,savedLat,savedLong)){
                     saveLocation(it.lat,it.long)
+
+                    // TODO test this code out tomorrow first thing.
+                  //  mainViewModel.getForecastData(it.lat,it.long)
+                    // TODO if it works move on to observing the data in the fragments
                 }else{
 
                     println("location does not need to be updated")
+                    Toast.makeText(this , "location does not need to be updated",Toast.LENGTH_LONG).show()
                 }
             }else
-            saveLocation(it.lat,it.long)
+            saveLocation(it.lat, it.long)
         })
     }
 
 
-    private fun saveLocation(lat: String, lon: String){
+    private fun saveLocation(lat: String, long: String){
+
         val editor = mPreferences.edit()
         editor.putString(LAT_KEY, lat)
-        editor.putString(LONG_KEY, lon)
+        editor.putString(LONG_KEY, long)
         editor.apply()
-        println("new location = ${lat} ${lon}")
+        Toast.makeText(this, lat,Toast.LENGTH_LONG).show()
+        mainViewModel.getForecastData(lat,long)
+        println("new location = ${lat} ${long}")
     }
 
 

@@ -19,6 +19,7 @@ interface WeatherDataAPI {
     suspend fun getHourlyForecastByLatLon(
         @Query("lat") lat : String,
         @Query("lon") lon : String,
+        //  @Query("units") unit : String,
         @Query("appid") apiKey: String
     ) : Response<HourlyForecastResponse>
 

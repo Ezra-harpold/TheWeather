@@ -29,27 +29,34 @@ class HourlyRepository @Inject constructor(
     suspend fun getHourlyForecast(date: Int) : LiveData<List<HourlyForecast>>{
 
         return withContext(Dispatchers.IO){
-            queryHourlyForecast()
+            //queryHourlyForecast()
 
             dao.getHourlyForecastByDate(date)
         }
     }
+    suspend fun queryHourlyForecastByLocation(lat: String, long: String){
 
-    private suspend fun queryHourlyForecast() {
+        return withContext(Dispatchers.IO){
+            queryHourlyForecast(lat, long)
+        }
+    }
+
+    private suspend fun queryHourlyForecast(lat: String, long: String) {
             try {
                 val queryResponse = WeatherApiCall {
-                    api.getHourlyForecastByCityName(location,
-                        //unit,
-                        apiKey)}
+                    api.getHourlyForecastByLatLon(lat,long, //unit,
+                         apiKey)}
                 val Result = queryResponse.list
                 println(Result.size)
 
                 for (item in Result){
                    val dateTime = formatDateTime(item.dt_txt)
-                  item.date = dateTime.dayOfMonth
+                    item.date = dateTime.dayOfMonth
+                    item.latitude = lat
+                    item.longitude = long
                     println(item.date)
-                }
 
+                }
                 saveForecast(Result)
             }catch (e: Exception) {
                 e.printStackTrace()

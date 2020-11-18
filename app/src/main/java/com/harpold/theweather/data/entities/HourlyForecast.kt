@@ -17,7 +17,9 @@ import com.harpold.theweather.data.entities.tempEntites.wind
 data class HourlyForecast (
     @PrimaryKey
     var dt_txt: String,
-
+    var dt: Long,
+    var latitude: String,
+    var longitude: String,
     var date: Int ,
 
     @Embedded

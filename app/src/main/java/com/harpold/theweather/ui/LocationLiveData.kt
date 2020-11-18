@@ -24,6 +24,13 @@ class LocationLiveData(context: Context) : LiveData<LocationData>(){
     override fun onActive() {
         super.onActive()
         // Start location updates
+        fusedLocationProviderClient.lastLocation.addOnSuccessListener{
+            location: Location? ->  location.also {
+            if (it != null) {
+                setLocation(it)
+            }
+        }
+        }
         fusedLocationProviderClient.requestLocationUpdates(locationRequest,locationCallback,null)
     }
 
@@ -40,8 +47,8 @@ class LocationLiveData(context: Context) : LiveData<LocationData>(){
 
     private fun setLocation(location: Location){
         value = LocationData(
-            location.longitude.toString(),
-            location.latitude.toString()
+            location.latitude.toString(),
+            location.longitude.toString()
         )
     }
 
@@ -51,12 +58,8 @@ class LocationLiveData(context: Context) : LiveData<LocationData>(){
             interval = fiveMinutes
             fastestInterval = fiveMinutes/10
 
-            /**
-             * Because the weather forecast is rarely ever going to be more specific then the city
-             * the user is located in PRIORITY_LOW_POWER which requests city level accuracy should
-             * be accurate enough for this app
-             **/
-            priority = LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY
+
+            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
 
         }
     }
