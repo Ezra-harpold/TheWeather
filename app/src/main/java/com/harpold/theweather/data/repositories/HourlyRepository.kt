@@ -50,7 +50,7 @@ class HourlyRepository @Inject constructor(
                 println(Result.size)
 
                 for (item in Result){
-                   val dateTime = formatDateTime(item.dt_txt)
+                   val dateTime = formatDateTime(item.dt)
                     item.date = dateTime.dayOfMonth
                     item.latitude = lat
                     item.longitude = long
