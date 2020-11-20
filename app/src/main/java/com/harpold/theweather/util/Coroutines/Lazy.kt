@@ -1,4 +1,4 @@
-package com.harpold.theweather.util
+package com.harpold.theweather.util.Coroutines
 
 import kotlinx.coroutines.*
 

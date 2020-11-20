@@ -1,4 +1,4 @@
-package com.harpold.theweather.ui
+package com.harpold.theweather.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,24 +9,24 @@ import com.harpold.theweather.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_PARAM1Today = "param1"
+private const val ARG_PARAM2Today = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [fiveDayForecastFragment.newInstance] factory method to
+ * Use the [todaysForecastFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class fiveDayForecastFragment : Fragment() {
+class todaysForecastFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var param1Today: String? = null
+    private var param2Today: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            param1Today = it.getString(ARG_PARAM1Today)
+            param2Today = it.getString(ARG_PARAM2Today)
         }
     }
 
@@ -35,7 +35,7 @@ class fiveDayForecastFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_five_day_forecast, container, false)
+        return inflater.inflate(R.layout.fragment_todays_forecast, container, false)
     }
 
     companion object {
@@ -45,15 +45,14 @@ class fiveDayForecastFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment fiveDayForecastFragment.
+         * @return A new instance of fragment todaysForecastFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() =
-            fiveDayForecastFragment().apply {
+            todaysForecastFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+
                 }
             }
     }

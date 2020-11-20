@@ -3,6 +3,9 @@ package com.harpold.theweather.ui
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.harpold.theweather.ui.fragments.fiveDayForecastFragment
+import com.harpold.theweather.ui.fragments.todaysForecastFragment
+import com.harpold.theweather.ui.fragments.tomorrowForecastFragment
 
 class FragmentForecastAdapter(hostActivity: AppCompatActivity, val fragmentCount: Int):
 FragmentStateAdapter(hostActivity){

@@ -20,7 +20,7 @@ data class HourlyForecast (
     var dt: Long,
     var latitude: String,
     var longitude: String,
-    var date: Int ,
+    var date: Int,
 
     @Embedded
     var main: main? = null,

@@ -1,19 +1,12 @@
-package com.harpold.theweather.ui
+package com.harpold.theweather.ui.viewModels
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.harpold.theweather.data.entities.HourlyForecast
 import com.harpold.theweather.data.repositories.HourlyRepository
-import com.harpold.theweather.util.Coroutines.Coroutines
-import com.harpold.theweather.util.lazyDeferred
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
 
 class MainActivityViewModel @ViewModelInject constructor (
     private val hourlyRepository: HourlyRepository
@@ -27,7 +20,7 @@ class MainActivityViewModel @ViewModelInject constructor (
 
 
 
-        fun getForecastData(lat: String, long: String){
+        fun getForecastDataByLocation(lat: String, long: String){
             viewModelScope.launch {
                 hourlyRepository.queryHourlyForecastByLocation(lat,long)
             }

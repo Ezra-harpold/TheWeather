@@ -19,10 +19,6 @@ import javax.inject.Singleton
 class ApiModule {
 
 
-
-
-
-
    @Provides
     fun provideNetworkConnectionTest(@ApplicationContext appContext: Context) : NetworkConnectionTest{
      return NetworkConnectionTest(appContext)
