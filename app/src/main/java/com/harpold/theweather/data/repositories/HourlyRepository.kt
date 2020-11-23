@@ -57,6 +57,7 @@ class HourlyRepository @Inject constructor(
                     println(item.date)
 
                 }
+                // TODO delete old saved forecast
                 saveForecast(Result)
             }catch (e: Exception) {
                 e.printStackTrace()
