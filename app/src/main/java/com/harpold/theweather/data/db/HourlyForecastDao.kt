@@ -25,6 +25,7 @@ interface HourlyForecastDao {
     @Query("DELETE  FROM HourlyForecast WHERE latitude != :Lat AND longitude != :Long ")
     fun deleteObsoleteDataByLocation(Lat: String, Long: String)
 
-
+    @Query("DELETE FROM HourlyForecast WHERE dt < :EpochInSeconds")
+    fun deleteObsoleteDataByEpochTimestamp(EpochInSeconds: Long)
 
 }

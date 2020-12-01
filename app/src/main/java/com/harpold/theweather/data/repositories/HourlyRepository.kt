@@ -11,6 +11,7 @@ import com.harpold.theweather.util.formatDateTime
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.time.Instant
 import javax.inject.Inject
 
 class HourlyRepository @Inject constructor(
@@ -55,9 +56,10 @@ class HourlyRepository @Inject constructor(
                     item.latitude = lat
                     item.longitude = long
                     println(item.date)
-
                 }
+
                 // TODO delete old saved forecast
+                //  deleteObsoleteData(lat, long)
                 saveForecast(Result)
             }catch (e: Exception) {
                 e.printStackTrace()
@@ -69,6 +71,13 @@ class HourlyRepository @Inject constructor(
         Coroutines.io {
             dao.saveAllHourlyForecasts(hourlyForecast)
         }
+    }
+
+    private fun deleteObsoleteData(lat: String, long: String){
+        val epochInSeconds : Long = Instant.now().epochSecond
+        dao.deleteObsoleteDataByLocation(lat,long)
+        dao.deleteObsoleteDataByEpochTimestamp(epochInSeconds)
+
     }
 
 
