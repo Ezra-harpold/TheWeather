@@ -48,18 +48,17 @@ class HourlyRepository @Inject constructor(
                     api.getHourlyForecastByLatLon(lat,long, //unit,
                          apiKey)}
                 val Result = queryResponse.list
-                println(Result.size)
+                //println(Result.size)
 
                 for (item in Result){
                    val dateTime = formatDateTime(item.dt)
                     item.date = dateTime.dayOfMonth
                     item.latitude = lat
                     item.longitude = long
-                    println(item.date)
+                    //println(item.date)
                 }
 
-                // TODO delete old saved forecast
-                //  deleteObsoleteData(lat, long)
+                deleteObsoleteData(lat, long)
                 saveForecast(Result)
             }catch (e: Exception) {
                 e.printStackTrace()
