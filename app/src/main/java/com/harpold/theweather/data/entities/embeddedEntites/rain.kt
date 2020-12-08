@@ -1,4 +1,4 @@
-package com.harpold.theweather.data.entities.tempEntites
+package com.harpold.theweather.data.entities.embeddedEntites
 
 import com.google.gson.annotations.SerializedName
 

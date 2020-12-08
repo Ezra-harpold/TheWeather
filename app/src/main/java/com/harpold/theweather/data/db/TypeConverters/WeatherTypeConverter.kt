@@ -1,7 +1,7 @@
 package com.harpold.theweather.data.db.TypeConverters
 
 import androidx.room.TypeConverter
-import com.harpold.theweather.data.entities.tempEntites.weather
+import com.harpold.theweather.data.entities.embeddedEntites.weather
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
