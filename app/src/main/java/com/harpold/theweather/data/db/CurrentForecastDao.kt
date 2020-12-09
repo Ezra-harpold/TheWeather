@@ -9,7 +9,7 @@ import com.harpold.theweather.data.entities.CurrentForecast
 
 
 @Dao
-interface CurrentForeastDao {
+interface CurrentForecastDao {
 
 
 

@@ -2,7 +2,9 @@ package com.harpold.theweather.data.repositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.harpold.theweather.data.db.CurrentForecastDao
 import com.harpold.theweather.data.db.HourlyForecastDao
+import com.harpold.theweather.data.entities.CurrentForecast
 import com.harpold.theweather.data.entities.HourlyForecast
 import com.harpold.theweather.data.network.SafeApiCall
 import com.harpold.theweather.data.network.WeatherDataAPI
@@ -16,7 +18,8 @@ import javax.inject.Inject
 
 class HourlyRepository @Inject constructor(
     private val api: WeatherDataAPI,
-    private val dao: HourlyForecastDao
+    private val hourlyForecastDao: HourlyForecastDao,
+    private val currentForecastDao: CurrentForecastDao
 
 ) : SafeApiCall() {
 
@@ -32,22 +35,23 @@ class HourlyRepository @Inject constructor(
         return withContext(Dispatchers.IO){
             //queryHourlyForecast()
 
-            dao.getHourlyForecastByDate(date)
+            hourlyForecastDao.getHourlyForecastByDate(date)
         }
     }
-    suspend fun queryHourlyForecastByLocation(lat: String, long: String){
+    suspend fun queryForecastByLocation(lat: String, long: String){
 
         return withContext(Dispatchers.IO){
             queryHourlyForecast(lat, long)
+            queryCurrentForecast(lat, long)
         }
     }
 
     private suspend fun queryHourlyForecast(lat: String, long: String) {
             try {
-                val queryResponse = WeatherApiCall {
+                val hourlyForecastResponse = WeatherApiCall {
                     api.getHourlyForecastByLatLon(lat,long, //unit,
                          apiKey)}
-                val Result = queryResponse.list
+                val Result = hourlyForecastResponse.list
                 //println(Result.size)
 
                 for (item in Result){
@@ -59,23 +63,42 @@ class HourlyRepository @Inject constructor(
                 }
 
                 deleteObsoleteData(lat, long)
-                saveForecast(Result)
+                saveHourlyForecast(Result)
             }catch (e: Exception) {
                 e.printStackTrace()
             }
     }
 
+    private suspend fun queryCurrentForecast(lat: String, lon:String){
+        try {
+            val currentForecastResponse = WeatherApiCall {
+                api.getCurrentForecastByLatLon(lat, lon, apiKey)}
 
-    private fun saveForecast(hourlyForecast: List<HourlyForecast>) {
+            val currentForecastResult = currentForecastResponse.currentForecast
+
+            saveCurrentForecast(currentForecastResult)
+        }catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+
+    private fun saveHourlyForecast(hourlyForecast: List<HourlyForecast>) {
         Coroutines.io {
-            dao.saveAllHourlyForecasts(hourlyForecast)
+            hourlyForecastDao.saveAllHourlyForecasts(hourlyForecast)
+        }
+    }
+
+    private fun saveCurrentForecast(currentForecast: CurrentForecast){
+        Coroutines.io {
+            currentForecastDao.saveCurrentForecast(currentForecast)
         }
     }
 
     private fun deleteObsoleteData(lat: String, long: String){
         val epochInSeconds : Long = Instant.now().epochSecond
-        dao.deleteObsoleteDataByLocation(lat,long)
-        dao.deleteObsoleteDataByEpochTimestamp(epochInSeconds)
+        hourlyForecastDao.deleteObsoleteDataByLocation(lat,long)
+        hourlyForecastDao.deleteObsoleteDataByEpochTimestamp(epochInSeconds)
 
     }
 

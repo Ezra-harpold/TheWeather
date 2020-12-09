@@ -22,7 +22,7 @@ class MainActivityViewModel @ViewModelInject constructor (
 
         fun getForecastDataByLocation(lat: String, long: String){
             viewModelScope.launch {
-                hourlyRepository.queryHourlyForecastByLocation(lat,long)
+                hourlyRepository.queryForecastByLocation(lat,long)
             }
         }}
 

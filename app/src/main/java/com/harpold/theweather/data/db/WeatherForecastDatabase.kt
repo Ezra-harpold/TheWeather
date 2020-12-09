@@ -14,7 +14,7 @@ import com.harpold.theweather.data.entities.HourlyForecast
 abstract class WeatherForecastDatabase : RoomDatabase() {
 
     abstract fun hourlyForecastDao(): HourlyForecastDao
-    abstract fun currentForecastDao(): CurrentForeastDao
+    abstract fun currentForecastDao(): CurrentForecastDao
 
 
 }
